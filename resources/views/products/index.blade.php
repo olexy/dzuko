@@ -1,35 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Products</div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"><h4>Product List</h4></div>
 
-                <div class="card-body">
-                    <div align="right">
-                        <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Product</button>
-                    </div>
-                    <br />
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="product_table">
-                            <thead>
-                            <tr>
-                                <th width="10%">Image</th>
-                                <th width="25%">Product Name</th>
-                                <th width="10">Price</th>
-                                <th width="35%">Description</th>
-                                <th width="30%">Action</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
+            <div class="card-body">
+                <div align="right">
+                    <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Product</button>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="product_table">
+                        <thead>
+                        <tr>
+                            <th width="10%">Image</th>
+                            <th width="25%">Product Name</th>
+                            <th width="10">Price</th>
+                            <th width="35%">Description</th>
+                            <th width="30%">Action</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     $(document).ready(function(){
