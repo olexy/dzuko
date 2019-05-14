@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 return [
 
@@ -174,6 +174,7 @@ return [
         // dzuko\Providers\BroadcastServiceProvider::class,
         dzuko\Providers\EventServiceProvider::class,
         dzuko\Providers\RouteServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
 
@@ -225,7 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];
