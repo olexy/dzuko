@@ -79,39 +79,39 @@
 
 
 <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
 
-            $('#product_table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax:{
-                url: "{{ route('products.index') }}",
-                },
-                columns:[
-                    {
-                        data: 'image',
-                        name: 'image',
-                        render: function(data, type, full, meta){
-                        return "<img src={{ URL::to('/') }}/" + data + " width='70' class='img-thumbnail' />";
-                        },
-                        orderable: false
+        $('#product_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax:{
+            url: "{{ route('products.index') }}",
+            },
+            columns:[
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function(data, type, full, meta){
+                    return "<img src={{ URL::to('/') }}/" + data + " width='70' class='img-thumbnail' />";
                     },
-                    {data: 'name', name: 'name'},
-                    {data: 'price', name: 'price'},
-                    {data: 'description', name: 'description'},
-                    {data: 'action', name: 'action', orderable: false}
-                ]
-            });
+                    orderable: false
+                },
+                {data: 'name', name: 'name'},
+                {data: 'price', name: 'price'},
+                {data: 'description', name: 'description'},
+                {data: 'action', name: 'action', orderable: false}
+            ]
+        });
 
-            $('#create_product').click(function(){
+        $('#create_product').click(function(){
 
-            $('.modal-title').text("Add New Record");
-                //  $('#action_button').val("Add");
-                //  $('#action').val("Add");
-                $('#formModal').modal('show');
-            });
+        $('.modal-title').text("Add New Record");
+            //  $('#action_button').val("Add");
+            //  $('#action').val("Add");
+            $('#formModal').modal('show');
+        });
 
-            $('#product_submit_form').on('submit', function(event){
+        $('#product_submit_form').on('submit', function(event){
             event.preventDefault();
             if($('#action').val() == 'Add')
             {
@@ -143,8 +143,65 @@
                         }
                         $('#form_result').html(html);
                     }
-                })
+                });
             }
+
+            if($('#action').val() == "Edit")
+            {
+                $.ajax({
+                    url:"{{ route('product.updater', '') }}",
+                    method:"POST",
+                    data:new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        var html = '';
+                        if(data.errors)
+                        {
+                            html = '<div class="alert alert-danger">';
+                            for(var count = 0; count < data.errors.length; count++)
+                            {
+                                html += '<p>' + data.errors[count] + '</p>';
+                            }
+                            html += '</div>';
+                        }
+                        if(data.success)
+                        {
+                            html = '<div class="alert alert-success">' + data.success + '</div>';
+                            $('#product_submit_form')[0].reset();
+                            $('#store_image').html('');
+                            $('#product_table').DataTable().ajax.reload();
+                        }
+                        $('#form_result').html(html);
+                    }
+                });
+            }
+
+        });
+
+        $(document).on('click', '.edit', function(){
+            var id = $(this).attr('id');
+            $('#form_result').html('');
+            $.ajax({
+                url:"/products/"+id+"/edit",
+                dataType:"json",
+                success:function(html){
+                    $('#name').val(html.data.name);
+                    $('#price').val(html.data.price);
+                    $('#description').val(html.data.description);
+                    $('#category').val(html.data.category_id);
+                    $('#store_image').html("<img src={{ URL::to('/') }}/" + html.data.image + " width='70' class='img-thumbnail' />");
+                    $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
+                    $('#hidden_id').val(html.data.id);
+                    $('.modal-title').text("Update Record");
+                    $('#action_button').val("Update");
+                    $('#action').val("Edit");
+                    $('#formModal').modal('show');
+                }
+            })
         });
 
     });

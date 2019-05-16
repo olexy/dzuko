@@ -2,10 +2,11 @@
 
 namespace dzuko\Http\Controllers;
 
+use Validator;
 use dzuko\Product;
 use dzuko\Category;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -110,7 +111,11 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(request()->ajax())
+        {
+            $data = Product::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
     }
 
     /**
@@ -120,9 +125,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -134,6 +140,70 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updater(Request $request)
+    {
+        $image_url = $request->hidden_image;
+
+        $form_data = '';
+
+        if($request->hasFile('image'))
+        {
+            $rules = array(
+                'name'          =>  'required',
+                'price'         =>  'required',
+                'description'   =>  'required',
+                'category'      =>  'required',
+                'image'         =>  'required|image|max:2048'
+            );
+            $error = Validator::make($request->all(), $rules);
+            if($error->fails())
+            {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+
+            $image = $request->image->store('products');
+
+            $form_data = array(
+                'name'              =>  $request->name,
+                'price'             =>  $request->price,
+                'description'       =>  $request->description,
+                'category_id'       =>  $request->category,
+                'image'             =>  'storage/'. $image
+            );
+
+            unlink($image_url);
+            // Storage::disk('public')->delete($image_url);
+        }
+        else
+        {
+            $rules = array(
+                'name'          =>  'required',
+                'price'         =>  'required',
+                'description'   =>  'required',
+                'category'      =>  'required',
+            );
+
+            $error = Validator::make($request->all(), $rules);
+
+            if($error->fails())
+            {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+
+            $form_data = array(
+                'name'              =>  $request->name,
+                'price'             =>  $request->price,
+                'description'       =>  $request->description,
+                'category_id'       =>  $request->category,
+                'image'             =>  $image_url
+            );
+        }
+
+        Product::whereId($request->hidden_id)->update($form_data);
+
+        return response()->json(['success' => 'Data is successfully updated']);
     }
 
 }

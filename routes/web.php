@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('products', 'ProductsController');
 
+Route::post('/product/update', 'ProductsController@updater')->name('product.updater');
+
