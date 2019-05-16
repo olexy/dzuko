@@ -23,3 +23,4 @@ Route::resource('products', 'ProductsController');
 
 Route::post('/product/update', 'ProductsController@updater')->name('product.updater');
 
+Route::get('product/delete/{id}', 'ProductsController@destroyer');

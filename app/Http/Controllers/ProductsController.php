@@ -139,7 +139,16 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+
+    }
+
+    public function destroyer($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
     }
 
     public function updater(Request $request)

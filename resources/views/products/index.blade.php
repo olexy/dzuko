@@ -30,52 +30,70 @@
 </div>
 
 <div id="formModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-         <div class="modal-content">
-          <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 <h4 class="modal-title">Add New Product</h4>
-               </div>
-               <div class="modal-body">
-                    <span id="form_result"></span>
-                    <form method="post" id="product_submit_form" class="form-horizontal" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label class="control-label col-md-4" >Product Name : </label>
-                                <input type="text" name="name" id="name" class="form-control" />
-                          </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Price : </label>
-                                 <input type="text" name="price" id="price" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Description : </label>
-                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Category : </label>
-                                <select multiple class="form-control" id="category" name="category">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                           </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Select Image : </label>
-                                <input type="file" name="image" id="image" />
-                                <span id="store_image"></span>
-                        </div>
-                        <br />
-                        <div class="form-group" align="center">
-                            <input type="hidden" name="action" id="action" value="Add"/>
-                            <input type="hidden" name="hidden_id" id="hidden_id" />
-                            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
-                        </div>
-                    </form>
-               </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Product</h4>
             </div>
-           </div>
-       </div>
+            <div class="modal-body">
+                <span id="form_result"></span>
+                <form method="post" id="product_submit_form" class="form-horizontal" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label class="control-label col-md-4" >Product Name : </label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Price : </label>
+                                <input type="text" name="price" id="price" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Description : </label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Category : </label>
+                            <select multiple class="form-control" id="category" name="category">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Select Image : </label>
+                            <input type="file" name="image" id="image" />
+                            <span id="store_image"></span>
+                    </div>
+                    <br />
+                    <div class="form-group" align="center">
+                        <input type="hidden" name="action" id="action" value="Add"/>
+                        <input type="hidden" name="hidden_id" id="hidden_id" />
+                        <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <h4 align="center" style="margin:0;">Are you sure you want to remove this product?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
@@ -187,7 +205,6 @@
             $('#form_result').html('');
             $.ajax({
                 url:"/products/"+id+"/edit",
-                dataType:"json",
                 success:function(html){
                     $('#name').val(html.data.name);
                     $('#price').val(html.data.price);
@@ -200,6 +217,29 @@
                     $('#action_button').val("Update");
                     $('#action').val("Edit");
                     $('#formModal').modal('show');
+                }
+            })
+        });
+
+        var user_id;
+
+        $(document).on('click', '.delete', function(){
+        user_id = $(this).attr('id');
+        $('#confirmModal').modal('show');
+        });
+
+        $('#ok_button').click(function(){
+            $.ajax({
+                url:"/product/delete/"+user_id,
+                beforeSend:function(){
+                    $('#ok_button').text('Deleting...');
+                },
+                success:function(data)
+                {
+                    setTimeout(function(){
+                        $('#confirmModal').modal('hide');
+                        $('#product_table').DataTable().ajax.reload();
+                    }, 2000);
                 }
             })
         });
