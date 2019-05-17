@@ -42,11 +42,11 @@
                     @csrf
                     <div class="form-group">
                         <label class="control-label col-md-4" >Product Name : </label>
-                            <input type="text" name="name" id="name" class="form-control" />
+                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" />
                         </div>
                     <div class="form-group">
                         <label class="control-label col-md-4">Price : </label>
-                                <input type="text" name="price" id="price" class="form-control" />
+                                <input type="text" name="price" id="price" class="form-control" value="{{ old('price') }}" />
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4">Description : </label>

@@ -46,6 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <a href="{{ route('products.index') }}">Products</a>
 
                     </ul>
 
@@ -84,6 +85,11 @@
                 </div>
             </div>
         </nav>
+        @if (Session::has('success'))
+            <div class="alert alert-success">
+                {{ Session::get('success') }}
+            </div>
+        @endif
 
         <main class="py-4">
             @yield('content')
