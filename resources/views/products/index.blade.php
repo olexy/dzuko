@@ -221,30 +221,71 @@
             })
         });
 
-        var user_id;
+        // var user_id;
 
-        $(document).on('click', '.delete', function(){
-        user_id = $(this).attr('id');
-        $('#confirmModal').modal('show');
-        });
+        // $(document).on('click', '.delete', function(){
+        // user_id = $(this).attr('id');
+        // $('#confirmModal').modal('show');
+        // });
 
-        $('#ok_button').click(function(){
-            $.ajax({
-                url:"/product/delete/"+user_id,
-                beforeSend:function(){
-                    $('#ok_button').text('Deleting...');
-                },
-                success:function(data)
-                {
-                    setTimeout(function(){
-                        $('#confirmModal').modal('hide');
-                        $('#product_table').DataTable().ajax.reload();
-                    }, 2000);
-                }
-            })
-        });
+        // $('#ok_button').click(function(){
+        //     $.ajax({
+        //         url:"/product/delete/"+user_id,
+        //         beforeSend:function(){
+        //             $('#ok_button').text('Deleting...');
+        //         },
+        //         success:function(data)
+        //         {
+        //             setTimeout(function(){
+        //                 $('#confirmModal').modal('hide');
+        //                 $('#product_table').DataTable().ajax.reload();
+        //             }, 2000);
+        //         }
+        //     })
+        // });
 
     });
+
+        //delete ajax request are here
+        function deleteData(id){
+          var csrf_token = $('meta[name="csrf-token"]').attr('content');
+          swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              $.ajax({
+                  url : "{{ url('products') }}" + '/' + id,
+                  type : "POST",
+                  data : {'_method' : 'DELETE', '_token' : csrf_token},
+                  success : function(data) {
+                    $('#product_table').DataTable().ajax.reload();
+                      swal({
+                        title: "Delete Done!",
+                        text: "You clicked the button!",
+                        icon: "success",
+                        button: "Done",
+                      });
+                  },
+                  error : function () {
+                      swal({
+                          title: 'Oops...',
+                          text: data.message,
+                          type: 'error',
+                          timer: '1500'
+                      })
+                  }
+              });
+            } else {
+              swal("Your imaginary file is safe!");
+            }
+          });
+
+        }
 
 
 

@@ -15,6 +15,9 @@
     <!-- DataTables -->
      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
 
+      {{-- SweetAlert2 --}}
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,6 +26,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+    {{-- SweetAlert2 --}}
+    {{--   <link href="{{ asset('public/assets/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet"> --}}
 
     @yield('css')
 </head>
