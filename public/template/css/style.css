@@ -13,11 +13,11 @@ Created by: 	Lionode
 @import url("ionicons.min.css");
 /* -----  font awesome Font  -----*/
 @import url("font-awesome.min.css");
-/* =====  INDEX OF STYLES ===== 
+/* =====  INDEX OF STYLES =====
 01 ===== BASIC  =====
   1.1 General
-  1.2 Typography  
-  1.3 Spacing    
+  1.2 Typography
+  1.3 Spacing
   1.4 Button
   1.5 Elements
   1.6 Accordions
@@ -25,16 +25,16 @@ Created by: 	Lionode
   1.8 Progress Bars
   1.9 Inputs
   1.10 Timer
-  1.11 Newslatter popup 
-  
-02 ===== HEADER ===== 
+  1.11 Newslatter popup
+
+02 ===== HEADER =====
   2.1 Header
   2.2 Navbar
   2.3 Megamenu
   2.4 Search
   2.5 Cart
   2.6 Header bottom
-  
+
 03 ===== CONTANT =====
   3.1 Left column
   3.2 Right column
@@ -44,7 +44,7 @@ Created by: 	Lionode
   	3.2.4 Breadcrumb
   	3.2.5 Blog
   	3.2.6 Single Blog
-  	3.2.7 Product + Category Page 
+  	3.2.7 Product + Category Page
   	3.2.8 Client
   	3.2.9 Owl nav
   	3.2.10 About
@@ -54,14 +54,14 @@ Created by: 	Lionode
   	3.2.14 Login & register
   	3.2.15 Map
   	3.2.16 Brand
-  
+
 04 ===== FOOTER =====
 	4.1 Footer General
 	4.2 Scrollup
 
  ----------------------------------------------
 	BASIC
-	1.1 General  
+	1.1 General
 ----------------------------------------------- */
 
 body, html {
@@ -166,7 +166,7 @@ ul {
 	color: #000;
 }
 /* ----------------------------------------------
-	1.2 Typography 
+	1.2 Typography
 ----------------------------------------------- */
 a {
 	cursor: pointer;
@@ -236,7 +236,7 @@ h6 {
 	text-transform: capitalize;
 }
 /* ----------------------------------------------
-	1.3 Spacing 
+	1.3 Spacing
 ----------------------------------------------- */
 .box {
 	margin: 0 -10px;
@@ -475,7 +475,7 @@ h6 {
 	padding-bottom: 100px;
 }
 /* ----------------------------------------------
-	1.4 Button 
+	1.4 Button
 ----------------------------------------------- */
 .btn {
 	background: #e74c3c none repeat scroll 0 0;
@@ -520,7 +520,7 @@ h6 {
 	background-color: transparent;
 }
 /* ----------------------------------------------
-	1.5 Elements 
+	1.5 Elements
 ----------------------------------------------- */
 .alert {
 	border-radius: 0px;
@@ -563,7 +563,7 @@ i.right {
 	left: 0;
 }
 /* ----------------------------------------------
-	1.6 Accordian 
+	1.6 Accordian
 ----------------------------------------------- */
 .panel-default {
 	width: 100%;
@@ -581,7 +581,7 @@ i.right {
 	border-color: #e5e5e5;
 }
 /* ----------------------------------------------
-	1.7 Tabs 
+	1.7 Tabs
 ----------------------------------------------- */
 .nav > li > a {
 	padding: 7px 10px;
@@ -1552,16 +1552,17 @@ input#amount {
 	width: 50%;
 }
 .bannertext > h2 {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 700;
 	margin: 0;
 	text-transform: uppercase;
-	color: #000;
+	color: rgb(12, 1, 1);
 	line-height: 1;
 }
 .bannertext > p {
 	color: #e74c3c;
-	font-size: 14px;
+    font-size: 14px;
+    font-weight: 700;
 }
 .sub-hover {
 	overflow: hidden;
@@ -1722,7 +1723,7 @@ blockquote {
 	border-color: #e74c3c;
 }
 /* ----------------------------------------------
-	3.2.7 Product + Category Page 
+	3.2.7 Product + Category Page
 ----------------------------------------------- */
 #product-tab .product-thumb {
 	margin: 0px 10px 20px;
@@ -2212,7 +2213,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	z-index: 9999;
 }
 
-/* =====  RESPONSIVE CSS START  ===== */ 
+/* =====  RESPONSIVE CSS START  ===== */
 
 @media (min-width: 1320px) {
 .container {

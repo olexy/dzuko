@@ -11,16 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// PRODUCT MODEL ROUTES
 Route::resource('products', 'ProductsController');
-
 Route::post('/product/update', 'ProductsController@updater')->name('product.updater');
 
 // Route::get('product/delete/{id}', 'ProductsController@destroyer');
+
+//STORE FRONT ROUTES
+Route::get('/', 'ShopFrontController@index' )->name('store.front');
+Route::resource('shop', 'ShopFrontController');
+
+
