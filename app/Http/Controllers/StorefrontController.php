@@ -6,7 +6,7 @@ use dzuko\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ShopFrontController extends Controller
+class StorefrontController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -95,5 +95,11 @@ class ShopFrontController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function detailPage(Product $product)
+    {
+        return view('storefront.detail', [
+            'product' => $product
+        ]);
     }
 }

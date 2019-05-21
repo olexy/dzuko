@@ -44,7 +44,7 @@
                 <div class="product-grid">
                     <div class="item">
                         <div class="product-thumb">
-                            <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="{{ asset($product->image) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="{{ asset($product->image) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a> </div>
+                            <div class="image product-imageblock"> <a href="{{ route('product.detail', $product->id) }}"> <img data-name="product_image" src="{{ asset($product->image) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="{{ asset($product->image) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a> </div>
                             <div class="caption product-detail text-left">
                                 <h6 data-name="product_name" class="product-name mt_20"><a href="#" title="Casual Shirt With Ruffle Hem">{{ $product->name }}</a></h6>
                                 <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>

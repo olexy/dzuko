@@ -97,28 +97,21 @@
             <div class="header-right pull-right mtb_50">
               <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
               <div class="shopping-icon">
-                <div class="cart-item " data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="button">Item's : <span class="cart-qty">02</span></div>
+                <div class="cart-item " data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="button">Item's : <span class="cart-qty">{{ Cart::content()->count() }}</span></div>
                 <div id="cart-dropdown" class="cart-menu collapse">
                   <ul>
                     <li>
                       <table class="table table-striped">
                         <tbody>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="{{ asset('template/images/product/70x84.jpg') }}" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="{{ asset('template/images/product/70x84.jpg') }}" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
+                            @foreach(Cart::content() as $item)
+                                <td class="text-center"><a href="#"><img src="{{ asset('template/images/product/70x84.jpg') }}" alt="iPod Classic" title="iPod Classic"></a></td>
+                                <td class="text-left product-name"><a href="#">{{ $item->name }}</a>
+                                <span class="text-left price">${{ $item->price }}</span>
+                                <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
+                                </td>
+                                <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
+                            </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </li>
@@ -127,7 +120,7 @@
                         <tbody>
                           <tr>
                             <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
+                            <td class="text-right">${{ Cart::subtotal() }}</td>
                           </tr>
                           <tr>
                             <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
@@ -139,13 +132,13 @@
                           </tr>
                           <tr>
                             <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
+                            <td class="text-right">{{ Cart::total() }}</td>
                           </tr>
                         </tbody>
                       </table>
                     </li>
                     <li>
-                      <form action="cart_page.html">
+                      <a href="{{ route('cart') }}">
                         <input class="btn pull-left mt_10" value="View cart" type="submit">
                       </form>
                       <form action="checkout_page.html">
@@ -683,6 +676,8 @@
     <script src="{{ asset('template/js/owl.carousel.min.js') }}"></script>
     {{-- <script src="{{ asset('template/js/bootstrap.min.js') }}"></script> --}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {{-- SweetAlert2 --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('template/js/jquery.magnific-popup.js') }}"></script>
     <script src="{{ asset('template/js/jquery.firstVisitPopup.js') }}"></script>
     <script src="{{ asset('template/js/custom.js') }}"></script>

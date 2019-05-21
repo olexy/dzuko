@@ -24,7 +24,17 @@ Route::post('/product/update', 'ProductsController@updater')->name('product.upda
 // Route::get('product/delete/{id}', 'ProductsController@destroyer');
 
 //STORE FRONT ROUTES
-Route::get('/', 'ShopFrontController@index' )->name('store.front');
-Route::resource('shop', 'ShopFrontController');
+Route::get('/', 'StorefrontController@index' )->name('store.front');
+Route::resource('shop', 'StorefrontController');
+Route::get('product/{product}/', 'StorefrontController@detailPage')->name('product.detail');
+
+//CART ROUTES
+Route::post('product/cart', 'ShoppingController@addToCart' )->name('cart.add');
+
+//CART ROUTES
+Route::get('cart','ShoppingController@cart')->name('cart');
+Route::get('cart-item/delete/{rowId}', 'ShoppingController@destroy')->name('cart-item.destroy');
+
+
 
 
