@@ -34,9 +34,10 @@
                     <div style="max-width: 200px;" class="input-group btn-block">
                       <input type="text" class="form-control quantity" size="1" value="{{ $item->qty }}" name="quantity">
                       <span class="input-group-btn">
-                  <a href="" class="btn" title="" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></a>
-                  <a href="{{ route('cart-item.destroy', $item->rowId) }}" class="btn btn-danger" title="" data-toggle="tooltip" type= "button" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
-                  </span></div>
+                        <a href="{{ route('cart-item.update', ['rowId' => $item->rowId, 'qty' => $item->qty]) }}" class="btn" title="" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></a>
+                        <a href="{{ route('cart-item.destroy', $item->rowId) }}" class="btn btn-danger" title="" data-toggle="tooltip" type= "button" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
+                       </span>
+                    </div>
                   </td>
                   <td class="text-right">{{ $item->price }}</td>
                   <td class="text-right">{{ Cart::subtotal() }}</td>

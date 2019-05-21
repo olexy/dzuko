@@ -51,10 +51,10 @@
                                 <span class="price"><span class="amount"><span class="currencySymbol">$</span>{{ $product->price }}</span>
                                 </span>
                                 <div class="button-group text-center">
-                                <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
+                                    <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
+                                    <div class="quickview"><a href="#"><span>Quick View</span></a></div>
+                                    <div class="compare"><a href="#"><span>Compare</span></a></div>
+                                    <div class="add-to-cart"><a href="{{ route('quick-cart.add', $product->id)}}"><span>Add to cart</span></a></div>
                                 </div>
                             </div>
                         </div>

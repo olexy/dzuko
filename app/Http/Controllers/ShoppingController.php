@@ -21,11 +21,10 @@ class ShoppingController extends Controller
            'weight' => 550
        ]);
 
-    //    Cart::associate($cartItem->rowId, 'Product');
        Cart::associate($cartItem->rowId, \dzuko\Product::class);
 
 
-       return redirect()->route('storefront.cart');
+       return redirect()->route('cart');
     }
 
     public function cart()
@@ -40,5 +39,31 @@ class ShoppingController extends Controller
         Cart::remove($rowId);
 
         return redirect()->back();
+    }
+
+    public function update($rowId, $qty)
+    {
+
+        Cart::update($rowId, $qty + 1);
+
+        return redirect()->back();
+    }
+
+    public function fast_add_to_cart($id)
+    {
+        $product = Product::find($id);
+
+        $cartItem = Cart::add([
+           'id' =>$product->id,
+           'name' => $product->name,
+           'qty' => 1,
+           'price' => $product->price,
+           'weight' => 550
+       ]);
+
+       Cart::associate($cartItem->rowId, \dzuko\Product::class);
+
+
+       return redirect()->route('cart');
     }
 }

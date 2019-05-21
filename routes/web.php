@@ -31,9 +31,14 @@ Route::get('product/{product}/', 'StorefrontController@detailPage')->name('produ
 //CART ROUTES
 Route::post('product/cart', 'ShoppingController@addToCart' )->name('cart.add');
 
-//CART ROUTES
 Route::get('cart','ShoppingController@cart')->name('cart');
+
 Route::get('cart-item/delete/{rowId}', 'ShoppingController@destroy')->name('cart-item.destroy');
+
+Route::get('cart-item/update/{rowId}/{qty}', 'ShoppingController@update')->name('cart-item.update');
+
+Route::get('product/fast-cart-add/{id}','ShoppingController@fast_add_to_cart')->name('quick-cart.add');
+
 
 
 
