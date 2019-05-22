@@ -82,9 +82,9 @@
             </div>
             <div class="col-sm-6">
               <ul class="header-top-right text-right">
-                <li class="account"><a href="login.html">My Account</a></li>
+                <li class="account"><a href="{{ route('login') }}">My Account</a></li>
                 <li class="sitemap"><a href="#">Sitemap</a></li>
-                <li class="cart"><a href="cart_page.html">My Cart</a></li>
+                <li class="cart"><a href="{{ route('cart') }}">My Cart</a></li>
               </ul>
             </div>
           </div>

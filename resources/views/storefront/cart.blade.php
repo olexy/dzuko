@@ -502,12 +502,8 @@
             </table>
           </div>
         </div>
-        <form action="index.html">
-          <input class="btn pull-left mt_30" type="submit" value="Continue Shopping" />
-        </form>
-        <form action="checkout.html">
-          <input class="btn pull-right mt_30" type="submit" value="Checkout" />
-        </form>
+          <a href="{{ route('store.front') }}" class="btn pull-left mt_30">Continue Shopping</a>
+          <a href="{{ route('checkout') }}" class="btn pull-right mt_30"> Checkout</a>
       </div>
     </div>
     <div id="brand_carouse" class="ptb_30 text-center">

@@ -1,0 +1,39 @@
+{
+  "status": false,
+  "message": "Invalid Amount Sent"
+}
+{
+  "status": false,
+  "message": "Invalid Amount Sent"
+}
+{
+  "status": false,
+  "message": "Invalid Amount Sent"
+}
+{
+  "status": true,
+  "message": "Authorization URL created",
+  "data": {
+    "authorization_url": "https://checkout.paystack.com/swmr5wsl1904vz3",
+    "access_code": "swmr5wsl1904vz3",
+    "reference": "zlp0947zjs"
+  }
+}
+{
+  "status": true,
+  "message": "Authorization URL created",
+  "data": {
+    "authorization_url": "https://checkout.paystack.com/4q4t5zffu34s3lw",
+    "access_code": "4q4t5zffu34s3lw",
+    "reference": "ftky7bvx2c"
+  }
+}
+{
+  "status": true,
+  "message": "Authorization URL created",
+  "data": {
+    "authorization_url": "https://checkout.paystack.com/thjddfjwjtnydd5",
+    "access_code": "thjddfjwjtnydd5",
+    "reference": "cwyaxvxcks"
+  }
+}

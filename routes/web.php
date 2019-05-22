@@ -39,6 +39,13 @@ Route::get('cart-item/update/{rowId}/{qty}', 'ShoppingController@update')->name(
 
 Route::get('product/fast-cart-add/{id}','ShoppingController@fast_add_to_cart')->name('quick-cart.add');
 
+Route::get('checkout','ShoppingController@checkout')->name('checkout');
+
+//process form => create sub
+Route::post('cart/confirm', 'ShoppingController@confirm')->name('cart.confirm');
+
+
+
 
 
 
